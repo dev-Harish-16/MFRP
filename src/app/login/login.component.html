@@ -1,0 +1,133 @@
+<section class="">
+    <div class="container py-5 h-100  ">
+        <div class="row d-flex align-items-center justify-content-center h-100 px-2 ">
+            <div class="col-12 col-md-7 col-lg-5 col-xl-5 shadow-lg p-4 " data-aos="fade-right" data-aos-delay="500">
+                <h1 class="text-center fw-bold Login ">LOGIN</h1>
+                <form [formGroup]="userLogin" #ref="ngForm" (ngSubmit)="ref.valid && loginFormSubmit()">
+
+                    <!-- username input -->
+                    <div class="form-floating mb-4">
+                        <input type="text" id="Username" class="form-control" placeholder="Username"
+                            formControlName="username">
+                        <label class="form-label" for="Username">Username</label>
+                        <div>
+                            <div *ngIf="username.invalid && username.touched  || username.invalid && ref.submitted">
+                                <p *ngIf="username.errors?.['required'] " class="validation"> *username is
+                                    required</p>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="form-floating mb-4">
+                        <input type="Password" id="Password" class="form-control" placeholder="Password"
+                            formControlName="password">
+                        <label class="form-label" for="Password">Password</label>
+                        <div>
+                            <div *ngIf="password.invalid && password.touched  || password.invalid && ref.submitted">
+                                <p *ngIf="password.errors?.['required'] " class="validation"> *Password is
+                                    required</p>
+
+                            </div>
+                        </div>
+
+                        <div>
+                            <p *ngIf="message == true " class="validation"> *Invalid Credentials</p>
+                        </div>
+                    </div>
+
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary  d-block w-100 mx-auto">Login</button>
+                    <div class="text-center pt-2 mb-0">
+                        <p class="mb-0">Forget password?
+                            <span class="badge rounded-pill bg-primary " role="button" data-bs-toggle="modal"
+                                data-bs-target="#forgotPassword"> click
+                                here</span>
+                        </p>
+                    </div>
+                   
+                    <div class="d-flex justify-content-center py-1">
+                        <p class="text-center fw-bold mx-3 my-0 text-muted">OR</p>
+                    </div>
+                    <div class="mt-0">
+                        <p class="text-center mx-3 fw-bold ">Are You a New User ? Click here <i
+                                class="far fa-hand-point-down text-dark fa-bounce"></i></p>
+                        <button type="submit" class="btn btn-primary  d-block w-100 mx-auto"
+                            (click)="navigateToSignUp()">Signup as User</button>
+                        <p class="text-center mx-3 pt-3 fw-bold">Are You a Doctor looking to join us ? Click here <i
+                                class="far fa-hand-point-down text-dark fa-bounce"></i></p>
+                        <button type="submit" class="btn btn-primary  d-block w-100 mx-auto"
+                            (click)="navigateToSignUpDoctor()">Signup as Doctor</button>
+
+                    </div>
+
+                </form>
+                <!-- logo -->
+                <div class="d-flex justify-content-around pt-2">
+                    <span> <img src="../../assets/twitter-svgrepo-com.svg" alt="twitter" class="logo"></span>
+                    <span> <img src="../../assets/google-svgrepo-com.svg" alt="google" class="logo"></span>
+                    <span> <img src="../../assets/linkedin-svgrepo-com.svg" alt="linkedin" class="logo"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--modal for forgot password user-->
+<div class="modal fade" role="dialog" tabindex="-1" id="forgotPassword" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg bg-white ">
+        <div class="modal-content ">
+            <div class="modal-header shadow">
+                <!-- <h5 class="modal-title " id="exampleModalLabel"></h5> -->
+                <button type="button" class="btn-close bg-danger" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="forgotPasswordForm" #refs="ngForm" (ngSubmit)="refs.valid && generateOTP()">
+                    <div class="row row-cols-1">
+                        <div class="col p-4">
+                            <label for="usernameF" class="form-label">Username</label>
+                            <input type="text" id="usernameF" name="usernameF" class="form-control"
+                                formControlName="usernameF">
+                            <div>
+                                <div
+                                    *ngIf="usernameF.invalid && usernameF.touched  || usernameF.invalid && refs.submitted">
+                                    <p *ngIf="usernameF.errors?.['required'] " class="validation"> *username is
+                                        required</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col p-4">
+                            <label for="phonenumberF" class="form-label">Phone number </label>
+                            <input type="number" id="phonenumberF" name="phonenumberF" class="form-control"
+                                formControlName="phonenumberF">
+                            <div>
+                                <div
+                                    *ngIf="phonenumberF.invalid && phonenumberF.touched  || phonenumberF.invalid && refs.submitted">
+                                    <p *ngIf="phonenumberF.errors?.['required'] " class="validation"> * Phone number is
+                                        required</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col p-4" *ngIf="status == true">
+                            <p class="validation"> Enter OTP if received,</p>
+                            <label for="otp" class="form-label">OTP </label>
+                            <input type="text" id="otp" name="otp" class="form-control" formControlName="otp">
+                            <div class="mt-2">
+                                <button class="btn btn-primary float-end"
+                                    (click)="checkOtp(this.forgotPasswordForm.value,refs)" data-bs-dismiss="modal">Submit OTP</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="status == false">
+                        <button class="btn btn-primary float-end" type="submit">Submit</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

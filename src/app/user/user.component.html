@@ -1,0 +1,168 @@
+<main>
+    <!-- username display -->
+    <div>
+        <h3 class="text-capitalize py-2 px-5 fw-bold text-end " *ngIf=" userServiceObj.loginStatus==true">Hello,<span
+                class="text-success fst-italic">{{ salutation }}</span></h3>
+        <h4 class="text-capitalize px-5 fw-bold text-end " *ngIf=" userServiceObj.loginStatus==true"><span
+                class="plans fst-italic"><i class="fa fa-solid fa-crown fa-fade text-warning"
+                    style="--fa-animation-duration: 1.8s"></i>{{ salutationPlans }}</span></h4>
+    </div>
+
+    <!-- Welcome card -->
+    <div class="pt-3">
+        <div class=" px-5 py-3 mx-auto border-0 shadow-lg Welcome_card bg-white " data-aos="fade-up"
+            data-aos-delay="600">
+            <div class="d-flex justify-content-center align-items-center ">
+                <div class="card-body text-center fw-bold mt-0">
+
+                    <h2 class="heading text-center pt-3" data-aos="zoom-out" data-aos-delay="500">No more <span
+                            class="headings">Traffic!</span>
+                        No more waiting at <span class="headings">Receptions!</span><span class="headings"><br> Book
+                            Appointment</span>
+                        at
+                        your <span class="headings">Doorstep!</span></h2>
+                    <button class="btn float-sm-end my-2 goToAppointmentPage_btn"
+                        *ngIf=" userServiceObj.loginStatus==true" (click)="goToAppointmentPage()">Go to
+                        Appointment
+                        Details</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- selection Dropdown -->
+    <section class="d-flex justify-content-center align-items-center">
+        <div class="container mb-2 ">
+            <!-- select city -->
+            <div class="row row-cols-1 row-cols-sm-3 row-cols-md-3 mt-4">
+                <div class="col mt-2 justify-content-center d-flex" data-aos="fade-up" data-aos-delay="150">
+                    <form class="w-75">
+                        <label for="city" class="form-label names text-center">City:</label>
+                        <select name="city" id="city" class="form-select p-2" value="city" (change)="getCity($event)">
+                            <option selected value="select-city">--Select-City--</option>
+                            <option *ngFor="let city1 of city" value={{city1}}>{{city1}}</option>
+                        </select>
+                    </form>
+                </div>
+
+                <!-- select specialization -->
+                <div class="col mt-2 d-flex justify-content-center " data-aos="fade-up" data-aos-delay="150">
+                    <form action="" class="w-75">
+                        <label for="specialization" class="form-label names text-center">Specialization:</label>
+                        <select name="specialization" id="specialization" class="form-select p-2" value="specialization"
+                            (change)="getDataAccSpec($event)">
+                            <option selected value="select-specialization">--Select-Specialization--</option>
+                            <option *ngFor="let spec of specialization" value={{spec}}>{{spec}}</option>
+                        </select>
+                    </form>
+                </div>
+
+                <!-- button for get doctors list -->
+                <div class="col mt-4 d-flex justify-content-center align-items-center " data-aos="fade-up"
+                    data-aos-delay="150">
+                    <div class="pt-1">
+                        <button type="button" class="btn Search_btn" (click)="getDoctorsData()">Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- if no city or specialization is found ,this will display -->
+    <div class="text-center py-3 px-4 mt-3">
+        <h3 class="text-muted">{{comment}}</h3>
+    </div>
+
+    <!-- Doctors card -->
+    <div class="container  py-2 px-5">
+        <div class="card shadow-lg card_border mx-auto my-2 " *ngFor="let v of selectedDoctor">
+            <div class="row g-0">
+                <div class="col-md-3">
+                    <img src="{{v.imgUrl}}" alt="pic" class="img-fluid h-100 doctor_img">
+                </div>
+                <div class="col-md-9 ">
+                    <div class=" card-body  py-md-3">
+                        <div class="px-4 px-md-0">
+                            <h5><span class="doctorname">Dr. {{v.name | titlecase}}</span></h5>
+                            <h6><span class="details">{{v.specialization | titlecase}}</span></h6>
+                            <h6><span class="details">{{v.experience}} years experience overall </span></h6>
+                            <h6>{{v.city}}</h6>
+                            <h6><span class="details">&#8377;{{v.consultationFee}} Consulatation fee at clinic</span>
+                            </h6>
+                        </div>
+
+                        <button class="btn  btn-outline-light d-block mx-auto float-md-end Appointment_btn "
+                            data-bs-toggle="modal" data-bs-target="#modal" (click)="goToModal(v.username)">Book
+                            Appointment</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--modal  -->
+    <div class="modal fade" id="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header  text-center">
+                    <h5 class="modal-title">Book Appointment</h5>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">X</button>
+                </div>
+                <!--booking details -->
+                <div class="modal-body " *ngFor="let x of appointmentDataObj">
+                    <img class="d-block mx-auto mb-3 w-25" style="border-radius: 25%;" src="{{x.imgUrl}}" alt="">
+                    <div class="d-flex justify-content-center align-items-center ">
+                        <div class="px-4">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h6 class="modaltext fw-bold">Name </h6>
+                                    <h6 class="modaltext fw-bold">Specialization </h6>
+                                    <h6 class="modaltext fw-bold">Consulatation Fee </h6>
+                                </div>
+                                <div class="col-6">
+                                    <h6 class="text-dark">: {{x.name}}</h6>
+                                    <h6 class="text-dark">: {{x.specialization}}</h6>
+                                    <h6 class="text-dark">: &#8377;{{x.consultationFee}}</h6>
+                                </div>
+                            </div>
+
+                            <form action="" [formGroup]="appointmentForm">
+                                <div>
+                                    <label class="form-label modaltext fw-bold">Date of Appointment:</label>
+                                    <input type="date" placeholder="" class="form-control form_input_radius" id="date"
+                                        formControlName="date">
+                                </div>
+                                <div>
+                                    <label class="form-label modaltext fw-bold">Timings:</label>
+                                    <select class="form-select form_input_radius" formControlName="timmings">
+                                        <option selected value="--Select Timmings--">--Select Timings--</option>
+                                        <option value="9 AM">9 AM</option>
+                                        <option value="11 AM">11 AM</option>
+                                        <option value="2 PM">2 PM</option>
+                                    </select>
+                                </div>
+                                <button type="button" (click)="onSubmit()" class="btn d-block mx-auto mt-3 modal-btn"
+                                    (click)="checkLogin(template)" data-bs-dismiss="modal">Confirm and Pay</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<ng-template #template>
+    <!-- insufficient balance -->
+    <div>
+        <div class="modal-body p-3">
+            <div>
+                <img src="../../assets/undraw_access_account_re_8spm.svg" alt="gif" class="w-50 d-block mx-auto">
+                <h5 class="text-center text-muted py-3">Kindly login and Book your Appointments.!</h5>
+            </div>
+            <button type="button" class="btn btn-success d-block mx-auto" (click)="confirm()">Ok</button>
+        </div>
+    </div>
+</ng-template>
+
+<router-outlet></router-outlet>

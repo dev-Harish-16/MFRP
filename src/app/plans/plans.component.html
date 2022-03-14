@@ -1,0 +1,130 @@
+<section class="container my-3 p-5 ">
+    <!--Plans card -->
+    <div class="row row-cols-1 row-cols-md-2 mb-3 g-3 text-center">
+        <div class="col" data-aos="flip-right" data-aos-delay="500">
+            <div class="card shadow-lg">
+                <div class="card-header py-3">
+                    <h4 class="my-0 fw-normal">Basic</h4>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">&#8377;500<small class="text-muted fw-light">/year</small>
+                    </h1>
+                    <h2 class="card-title pricing-card-title">&#8377;300<small class="text-muted fw-light">/6
+                            month</small></h2>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>Limited Time to Booking</li>
+                        <li>First Consultation is free of cost</li>
+                        <li>Email support</li>
+                        <li>Help center access</li>
+                    </ul>
+                    <a id="link" href="plans#buyplan"><button class="btn w-50 rounded-3  text-white" style="background-color:#28328c" (click)="getvalues(500)">Buy Plan</button></a>
+                </div>
+            </div>
+        </div>
+        <div class="col" data-aos="flip-right" data-aos-delay="500">
+            <div class="card mb-4 shadow-lg">
+                <div class="card-header py-3">
+                    <h4 class="my-0 fw-normal">Premium</h4>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">&#8377;1000<small
+                            class="text-muted fw-light">/year</small></h1>
+                    <h2 class="card-title pricing-card-title">&#8377;600<small class="text-muted fw-light">/6
+                            month</small></h2>
+
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>24X7 Booking</li>
+                        <li>First 3 Consultation is free of cost</li>
+                        <li>Priority email support</li>
+                        <li>Help center access</li>
+                    </ul>
+                    <a id="link" href="plans#buyplan"><button class="btn w-50 rounded-3 text-white" style="background-color:#28328c" (click)="getvalues(1000)">Buy Plan</button></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- video -->
+
+    <!-- Comapre plans -->
+    <h2 class="display-6 text-center mb-4">Compare plans</h2>
+
+    <div class="table-responsive ">
+        <table class="table text-center table-hover">
+            <thead>
+                <tr>
+                    <th style="width: 34%;"></th>
+                    <th style="width: 22%;">Basic</th>
+                    <th style="width: 22%;">Premium</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <th scope="row" class="text-start">Validity for 365 days</th>
+                    <td><i class="far fa-check-circle text-success fw-bold fa-lg"></i></td>
+                    <td><i class="far fa-check-circle text-success fw-bold fa-lg"></i></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <th scope="row" class="text-start">Audio Consultation</th>
+                    <td><i class="far fa-check-circle text-success fw-bold fa-lg"></i></td>
+                    <td><i class="far fa-check-circle text-success fw-bold fa-lg"></i></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="text-start">Video Consultation</th>
+                    <td></td>
+                    <td><i class="far fa-check-circle text-success fw-bold fa-lg"></i></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="text-start">Accessible for family members</th>
+                    <td></td>
+                    <td><i class="far fa-check-circle text-success fw-bold fa-lg"></i></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="text-start">24 X 7 Booking</th>
+                    <td></td>
+                    <td><i class="far fa-check-circle text-success fw-bold fa-lg"></i></td>
+                    <td></td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container p-5 mt-3 " id="buyplan">
+        <div class="card  mx-auto card_border border-0 shadow-lg  appointment_card " style="max-width:1024px;"
+            data-aos="fade-up" data-aos-delay="600">
+            <div class="row g-0">
+                <div class="col-md-5 ">
+                    <img src="../../assets/payment-1.gif" class="img-fluid d-none d-sm-block rounded-3 h-100"
+                        alt="doctor">
+                </div>
+                <div class="col-md-7 d-flex justify-content-center align-items-center">
+                    <div class="card-body text-center fw-bold ">
+                        <h5 class="fw-bold py-1">PAYMENT FOR SUBSCRIPTION</h5>
+                        <h6>Wallet Balance :&#8377;{{userObj.wallet}}</h6>
+                        <div class="row pt-2">
+                            <div class="col-6 text-end">
+                                <p>PLAN:</p>
+                                <p>PRICE:</p>
+                            </div>
+                            <div class="col-6 text-start">
+                                <p>{{planName}}</p>
+                                <p>{{priceofplan}}</p>
+                            </div>
+
+                        </div>
+                        <button class="btn text-white w-50 my-2" style="background-color:#28328c" (click)="checkLogin()"
+                            (click)="pay()">Pay</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

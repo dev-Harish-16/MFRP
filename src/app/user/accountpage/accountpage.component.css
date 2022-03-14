@@ -1,0 +1,39 @@
+.close {
+  margin: 5px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  background-color: #ef0000;
+  color: #ffffff;
+  opacity: 1;
+  z-index: 10;
+}
+.img {
+  color: white;
+}
+.modal {
+  backdrop-filter: blur(15px);
+}
+
+.card_border {
+  border-radius: 20px;
+}
+
+section {
+  background-color: #eef3fb;
+}
+
+.topup_btn {
+  background-color: #BACDF9;
+  font-weight: bold;
+}
+
+.topup_btn:hover {
+  box-shadow: 0px 0px 10px 2px #BACDF9;
+  font-weight: bold;
+}
+
+.ProceedToAdd_btn:hover,
+.pay_btn:hover {
+  box-shadow: 0px 0px 10px 2px #ffc107;
+}

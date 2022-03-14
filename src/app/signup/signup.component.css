@@ -1,0 +1,25 @@
+
+.main {
+  background-color: #EDF2FB;
+}
+
+.signup {
+  letter-spacing: 3px;
+}
+
+.border-radius {
+  border-radius: 15px;
+  border: 3px solid #141b56;
+  background-color: white;
+
+}
+.validation{
+color:red;
+font-weight: bold;
+}
+.icon{
+color:#141b56
+}
+.logo{
+width: 25px;
+}

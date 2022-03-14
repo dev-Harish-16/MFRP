@@ -1,0 +1,129 @@
+/*..................................Quality Health is Wealth ................................*/
+.section_1,
+.section_2 {
+  /* background-color: #E8F0F2; */
+  color: #4f585e;
+}
+.section_2{
+  background-color: #E8F0F2; 
+}
+.focus-in-expand {
+  word-spacing: 3px;
+  animation: focus-in-expand 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@-webkit-keyframes focus-in-expand {
+  0% {
+    letter-spacing: -0.5em;
+    -webkit-filter: blur(12px);
+    filter: blur(12px);
+    opacity: 0;
+  }
+
+  100% {
+    -webkit-filter: blur(0px);
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes focus-in-expand {
+  0% {
+    letter-spacing: -0.5em;
+    -webkit-filter: blur(12px);
+    filter: blur(12px);
+    opacity: 0;
+  }
+
+  80% {
+    -webkit-filter: blur(0px);
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .section_1 {
+    padding: 20px;
+  }
+  .section_1_para1 {
+    font-size: 1.5rem;
+  }
+  .section_1_para2{
+    font-size:1.3rem;
+  }
+ .section_1_para3 {
+    font-size: 1rem;
+  }
+
+}
+@media only screen and (min-width: 768px) {
+  .section_1 {
+    padding: 40px;
+  }
+
+  .section_1_para1 {
+    font-size: 3.3rem;
+  }
+  .section_1_para2{
+    font-size: 1.5rem;
+  }
+  .section_1_para3 {
+    font-size: 1.2rem;
+  }
+
+ 
+}
+/* ............................Quality Health is Wealth _END............................. */
+
+/* ............................DOCTOR-CAROUSEL............................. */
+@media only screen and (max-width: 768px){
+  .aboutus_caro_1,
+  .aboutus_caro_2 {
+    width:100%
+  }
+}
+@media only screen and (min-width: 768px){
+  .aboutus_caro_1,
+  .aboutus_caro_2 {
+    height: 300px;
+  }
+}
+/* ............................DOCTOR-CAROUSEL_END............................. */
+
+/* .............................QUOTE....................................... */
+@media only screen and (max-width:768px) {
+  .Quote {
+    font-size:1.4rem;
+  }
+}
+
+@media only screen and (min-width:768px) {
+  .Quote {
+    font-size:1.9rem;
+  }
+}
+/* .............................QUOTE_END....................................... */
+@media only screen and (max-width:768px) {
+  .Feedback_carousel{
+    font-size:1.1rem;
+  }
+}
+@media only screen and (min-width:768px) {
+  .Feedback_carousel{
+  font-size:1.5rem ;
+  }
+}
+/* .............................HIGHLIGHTS....................................... */
+@media only screen and (max-width:768px){
+  .doctor-gif,.patient-gif{
+    height:200px;
+  }
+ 
+}
+@media only screen and (min-width:768px){
+  .doctor-gif,.patient-gif{
+    height:300px;
+  }
+}
+/* .............................HIGHLIGHTS-END....................................... */

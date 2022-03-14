@@ -1,0 +1,405 @@
+<!--Navbar-->
+<section>
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand logo fw-bold text-white fst-italic" id="logo" routerLink="home">eCLINICO<i
+                    class="fa-solid fa-hand-holding-medical fa-xl fa-fade text-warning fw-bold"
+                    style="--fa-animation-duration: 1.8s"></i></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav text-center ms-auto gap-3">
+                    <li class="nav-item hover-underline-animation">
+                        <a class="nav-link " routerLink="home" data-bs-toggle="collapse"
+                            data-bs-target=".navbar-collapse.show">Home</a>
+                    </li>
+                    <li class="nav-item hover-underline-animation">
+                        <a class="nav-link " routerLink="userdashboard" data-bs-toggle="collapse"
+                            data-bs-target=".navbar-collapse.show">Find doctor</a>
+                    </li>
+                    <li class="nav-item hover-underline-animation">
+                        <a class="nav-link " routerLink="plans" data-bs-toggle="collapse"
+                            data-bs-target=".navbar-collapse.show">Subscriptions
+                            <i class="fa-solid fa-bell text-warning fa-shake ps-1 fa-lg"
+                                style="--fa-animation-duration: 2s"></i></a>
+                    </li>
+                    <li class="nav-item hover-underline-animation">
+                        <a class="nav-link " routerLink="aboutus" data-bs-toggle="collapse"
+                            data-bs-target=".navbar-collapse.show">About us</a>
+                    </li>
+                    <li class="nav-item hover-underline-animation" *ngIf="userServiceObj.loginStatus == false">
+                        <a class="nav-link " routerLink="login" data-bs-toggle="collapse"
+                            data-bs-target=".navbar-collapse.show">Login </a>
+                    </li>
+
+                    <div class="dropdown " *ngIf="userServiceObj.loginStatus == true">
+                        <a class="btn btn-transparent dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user-circle fa-lg text-white"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+                            <li *ngIf="doctorServiceObj.whichUser==true"><button
+                                    class="dropdown-item text-dark fw-bold btn btn-transparent text-center  hover-underline-animation"
+                                    data-bs-toggle="modal" data-bs-target="#userModal">Edit Profile</button></li>
+                            <li *ngIf="doctorServiceObj.whichUser==false"><button
+                                    class="dropdown-item text-dark fw-bold  hover-underline-animation btn btn-transparent text-center"
+                                    data-bs-toggle="modal" data-bs-target="#doctorModal">Edit Profile</button></li>
+                            <li *ngIf="doctorServiceObj.whichUser==true">
+                                <button class="dropdown-item text-dark fw-bold hover-underline-animation text-center"
+                                    data-bs-toggle="modal" data-bs-target="#changePassword"> Change password </button>
+                            </li>
+                            <li *ngIf="doctorServiceObj.whichUser==false">
+                                <button class="dropdown-item text-dark fw-bold hover-underline-animation text-center"
+                                    data-bs-toggle="modal" data-bs-target="#changePasswordDoctor"> Change  password </button>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item text-dark fw-bold hover-underline-animation text-center"
+                                    routerLink="login" (click)="logout()">Logout </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</section>
+<!--user edit profile modal -->
+<section class="modal fade" role="dialog" tabindex="-1" id="userModal" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg bg-white ">
+        <div class="modal-content ">
+            <div class="modal-header shadow">
+                <h5 class="modal-title " id="exampleModalLabel">Edit Profile</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="userForm" #ref1="ngForm" (ngSubmit)="ref1.valid && userSubmit(ref1)">
+
+                    <div class="row">
+                        <!-- Name -->
+                        <div class="col-md-6 mb-4 pb-2">
+                            <label class="form-label" for="name">Name</label>
+                            <input type="text" id="name" class="form-control" formControlName="name" />
+                            <div>
+                                <div
+                                    *ngIf="nameOfUser.invalid && nameOfUser.touched  || nameOfUser.invalid && ref1.submitted">
+                                    <p *ngIf="nameOfUser.errors?.['required'] " class="validation"> *Name is
+                                        required</p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Age -->
+                        <div class="col-md-6 mb-4 pb-2">
+                            <div>
+                                <label class="form-label" for="age">Age</label>
+                                <input type="number" id="age" class="form-control " formControlName="age" />
+                                <div>
+                                    <div
+                                        *ngIf="ageOfUser.invalid && ageOfUser.touched  || ageOfUser.invalid && ref1.submitted">
+                                        <p *ngIf="ageOfUser.errors?.['required'] " class="validation"> *Age is
+                                            required</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <!-- city -->
+                        <div class="col-md-6 mb-4 pb-2">
+                            <div>
+                                <label class="form-label" for="city">City</label>
+                                <input type="text" id="city" class="form-control " formControlName="city" />
+                                <div>
+                                    <div
+                                        *ngIf="cityOfUser.invalid && cityOfUser.touched  || cityOfUser.invalid && ref1.submitted">
+                                        <p *ngIf="cityOfUser.errors?.['required'] " class="validation"> *city is
+                                            required</p>
+
+                                    </div>
+                                </div>
+                                <div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Phone Number -->
+                        <div class="col-md-6 mb-4 pb-2">
+                            <div>
+                                <label class="form-label" for="phoneno">Contact Number</label>
+                                <input type="tel" id="phoneno" class="form-control " formControlName="phoneno" />
+                                <div>
+                                    <div
+                                        *ngIf="phonenoOfUser.invalid && phonenoOfUser.touched  || phonenoOfUser.invalid && ref1.submitted">
+                                        <p *ngIf="phonenoOfUser.errors?.['required'] " class="validation"> *phone number
+                                            is
+                                            required</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- submit-->
+                    <div class="mt-4 d-flex justify-content-end gap-3">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!--doctor edit profile modal -->
+<section class="modal fade" role="dialog" tabindex="-1" id="doctorModal" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg bg-white  border-primary">
+        <div class="modal-content ">
+            <div class="modal-header shadow">
+                <h5 class="modal-title " id="exampleModalLabel">Edit Profile</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="doctorform" #ref="ngForm" (ngSubmit)="ref.valid && doctorSubmit(ref)">
+
+                    <div class="row">
+                        <!-- Name -->
+                        <div class="col-md-6 mb-4 pb-2">
+                            <label class="form-label" for="Name">Name</label>
+                            <input type="text" id="Name" class="form-control" formControlName="name" />
+                            <div>
+                                <div *ngIf="name.invalid && name.touched  || name.invalid && ref.submitted">
+                                    <p *ngIf="name.errors?.['required'] " class="validation"> *Name is
+                                        required</p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- specialization -->
+                        <div class="col-md-6 mb-4 pb-2">
+                            <div>
+                                <label class="form-label" for="specialization">Specialization</label>
+                                <input type="text" id="specialization" class="form-control "
+                                    formControlName="specialization" />
+                                <div>
+                                    <div
+                                        *ngIf="specialization.invalid && specialization.touched  || specialization.invalid && ref.submitted">
+                                        <p *ngIf="specialization.errors?.['required']" class="validation">
+                                            *Specialization is
+                                            required</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <!--Fees for consultation -->
+                        <div class="col-md-6 mb-4 pb-2">
+                            <div>
+                                <label class="form-label" for="consultationFee">Consultation Fees</label>
+                                <input type="number" id="consultationFee" class="form-control "
+                                    formControlName="consultationFee" />
+                                <div>
+                                    <div
+                                        *ngIf="consultationFee.invalid && consultationFee.touched  || consultationFee.invalid && ref.submitted">
+                                        <p *ngIf="consultationFee.errors?.['required']" class="validation">
+                                            *Consultation Fee is
+                                            required</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Phone Number -->
+                        <div class="col-md-6 mb-4 pb-2">
+                            <div>
+                                <label class="form-label" for="phoneNumber">Contact Number</label>
+                                <input type="tel" id="phoneNumber" class="form-control " formControlName="phoneno" />
+                                <div>
+                                    <div
+                                        *ngIf="phoneno.invalid && phoneno.touched  || phoneno.invalid && ref.submitted">
+                                        <p *ngIf="phoneno.errors?.['required']" class="validation"> *Phone Number is
+                                            required</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- city -->
+                        <div class="col-md-6 mb-4 pb-2">
+                            <div>
+                                <label class="form-label" for="City">City</label>
+                                <input type="text" id="City" class="form-control " formControlName="city" />
+                                <div>
+                                    <div *ngIf="city.invalid && city.touched  || city.invalid && ref.submitted">
+                                        <p *ngIf="city.errors?.['required'] " class="validation"> *City is
+                                            required</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- experience -->
+                        <div class="col-md-6 mb-4 pb-2">
+                            <div>
+                                <label class="form-label" for="experience">Experience</label>
+                                <input type="number" id="experience" class="form-control "
+                                    formControlName="experience" />
+                                <div>
+                                    <div
+                                        *ngIf="experience.invalid && experience.touched  || experience.invalid && ref.submitted">
+                                        <p *ngIf="experience.errors?.['required']" class="validation"> *Experience is
+                                            required</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- submit-->
+                        <div class="mt-4 d-flex justify-content-end gap-3">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!--change password modal-->
+
+<section class="modal fade" role="dialog" tabindex="-1" id="changePassword" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg bg-white ">
+        <div class="modal-content ">
+            <div class="modal-header shadow">
+                <!-- <h5 class="modal-title " id="exampleModalLabel"></h5> -->
+                <button type="button" class="btn-close bg-danger" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="changePasswordForm" #ref2="ngForm" (ngSubmit)="ref2.valid && changePassword(ref2)">
+                    <div class="row row-cols-1">
+                        <div class="col p-4">
+                            <label for="usernameOfF" class="form-label">Username</label>
+                            <input type="text" id="usernameOfF" name="usernameOfF" class="form-control"
+                                formControlName="username">
+                            <div>
+                                <div
+                                    *ngIf="usernameOfF.invalid && usernameOfF.touched  || usernameOfF.invalid && ref2.submitted">
+                                    <p *ngIf="usernameOfF.errors?.['required'] " class="validation"> *username is
+                                        required</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col p-4">
+                            <label for="oldpassword" class="form-label">Old password</label>
+                            <input type="password" id="oldpassword" name="oldpassword" class="form-control"
+                                formControlName="oldpassword">
+                                <div>
+                                    <div
+                                        *ngIf="oldpassword.invalid && oldpassword.touched  || oldpassword.invalid && ref2.submitted">
+                                        <p *ngIf="oldpassword.errors?.['required'] " class="validation"> * old password is
+                                            required</p>
+                                    </div>
+                                </div>
+                        </div>
+
+
+                        <div class="col p-4">
+                            <label for="newpassword" class="form-label">New password</label>
+                            <input type="password" id="newpassword" name="newpassword" class="form-control"
+                                formControlName="newpassword">
+                                <div>
+                                    <div
+                                        *ngIf="newpassword.invalid && newpassword.touched  || newpassword.invalid && ref2.submitted">
+                                        <p *ngIf="newpassword.errors?.['required'] " class="validation"> *new password is
+                                            required</p>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary float-end" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--change password modal - doctor-->
+
+<section class="modal fade" role="dialog" tabindex="-1" id="changePasswordDoctor" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg bg-white ">
+        <div class="modal-content ">
+            <div class="modal-header shadow">
+                <!-- <h5 class="modal-title " id="exampleModalLabel"></h5> -->
+                <button type="button" class="btn-close bg-danger" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="changePasswordFormDoctor" #ref3="ngForm" (ngSubmit)="ref3.valid && changePasswordDoctor(ref3)">
+                    <div class="row row-cols-1">
+                        <div class="col p-4">
+                            <label for="usernameD" class="form-label">Username</label>
+                            <input type="text" id="usernameD" name="usernameD" class="form-control"
+                                formControlName="usernameD">
+                            <div>
+                                <div
+                                    *ngIf="usernameD.invalid && usernameD.touched  || usernameD.invalid && ref3.submitted">
+                                    <p *ngIf="usernameD.errors?.['required'] " class="validation"> *username is
+                                        required</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col p-4">
+                            <label for="oldpasswordD" class="form-label">Old password</label>
+                            <input type="password" id="oldpasswordD" name="oldpasswordD" class="form-control"
+                                formControlName="oldpasswordD">
+                                <div>
+                                    <div
+                                        *ngIf="oldpasswordD.invalid && oldpasswordD.touched  || oldpasswordD.invalid && ref3.submitted">
+                                        <p *ngIf="oldpasswordD.errors?.['required'] " class="validation"> * old password is
+                                            required</p>
+                                    </div>
+                                </div>
+                        </div>
+
+
+                        <div class="col p-4">
+                            <label for="newpasswordD" class="form-label">New password</label>
+                            <input type="password" id="newpasswordD" name="newpasswordD" class="form-control"
+                                formControlName="newpasswordD">
+                                <div>
+                                    <div
+                                        *ngIf="newpasswordD.invalid && newpasswordD.touched  || newpasswordD.invalid && ref3.submitted">
+                                        <p *ngIf="newpasswordD.errors?.['required'] " class="validation"> *new password is
+                                            required</p>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary float-end" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

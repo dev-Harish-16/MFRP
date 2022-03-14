@@ -1,0 +1,21 @@
+main{
+    background-color: #EDF2FB;
+}
+.card_border{
+    border-radius: 20px;
+}
+.offcanvas_btn{
+    background-color:#141b56;
+    color: white;
+}
+.offcanvas_btn:hover{
+    box-shadow:0px 0px 10px 2px #141B56;
+}
+.Patients_card{
+    border-radius: 20px;
+}
+.Time{
+    border-radius: 20px;
+    box-shadow:0px 0px 10px 2px #141B56;
+    color:#141B56;
+}

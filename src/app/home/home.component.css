@@ -1,0 +1,96 @@
+/* .............................eCLINICO.......................... */
+.explore_button,.consult_btn {
+  background-color: #28328c;
+  color: white;
+}
+
+@-webkit-keyframes scale-in-hor-center {
+  0% {
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    opacity: 1;
+  }
+
+  100% {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+@keyframes scale-in-hor-center {
+  0% {
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    opacity: 1;
+  }
+
+  100% {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+/* .............................eCLINICO_END.......................... */
+/* .........................IMAGE-OVERLAY......................... */
+.overlay_container {
+  position: relative;
+}
+
+@media only screen and (min-width:524px) {
+  .overlay_text {
+    position: absolute;
+    top: 100px;
+    left: 30px;
+    font-size: 1.5rem;
+    width: 50%;
+    vertical-align: text-top;
+    /* text-align: center; */
+  }
+}
+
+@media only screen and (min-width:768px) {
+  .overlay_text {
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width:524px) {
+  .overlay_text {
+    position: absolute;
+    bottom: -5px;
+    left: 20px;
+    font-size: .9rem;
+    width: 50%;
+  }
+}
+
+/* .........................IMAGE-OVERLAY_END......................... */
+.scale-in-hor-center {
+  animation: scale-in-hor-center 1.1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+/* .............................MAIN-IDEAS.............................. */
+.card_img {
+  height: 110px;
+}
+
+.card_Title {
+  color: #4f585e;
+}
+
+.card {
+  border-radius: 10px;
+}
+
+.card:hover {
+  border-radius: 10px;
+  border: px solid #10847e;
+
+}
+/* .............................MAIN-IDEAS_END.............................. */
+
+.gif{
+  border-radius: 20px;
+}

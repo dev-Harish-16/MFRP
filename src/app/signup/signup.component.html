@@ -1,0 +1,163 @@
+<section class="main">
+    <div class="container py-5 ">
+        <div class="row justify-content-center align-items-center h-100">
+            <div class="col-12 col-lg-9 col-xl-7 " data-aos="fade-up" data-aos-delay="500">
+                <div class="border-radius shadow-lg ">
+                    <div class="p-4 p-md-5">
+                        <h1 class="mb-4 pb-2 pb-md-0 text-center fw-bold signup">SIGNUP</h1>
+                        <p class="text-muted text-center pb-2">Create your account. It's free and only takes a minute
+                        </p>
+                        <form [formGroup]="userSignup" #ref="ngForm" (ngSubmit)="ref.valid && signupSubmit(template)">
+
+                            <div class="row">
+                                <!-- Name -->
+                                <div class="col-md-6 mb-4 pb-2">
+                                    <label class="form-label" for="name">Name</label>
+                                    <input type="text" id="name" class="form-control" formControlName="name" />
+                                    <div>
+                                        <div *ngIf="name.invalid && name.dirty ||name.touched ||ref.submitted">
+                                            <p *ngIf="name.errors?.['required']" class="validation"> *Name is
+                                                required</p>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                                <!-- Age -->
+                                <div class="col-md-6 mb-4 pb-2">
+                                    <div>
+                                        <label class="form-label" for="age">Age</label>
+                                        <input type="number" id="age" class="form-control " formControlName="age" />
+                                        <div>
+                                            <div *ngIf="age.invalid && age.dirty ||age.touched ||ref.submitted">
+                                                <p *ngIf="age.errors?.['required']" class="validation"> *Age is
+                                                    required</p>
+                                                    <p *ngIf="age.errors?.['pattern']" class="validation"> *give 2 digit number</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <!-- Username -->
+                                <div class="col-md-6 mb-4">
+                                    <div>
+                                        <label class="form-label" for="username">Username</label>
+                                        <input type="text" id="username" class="form-control"
+                                            formControlName="username" />
+                                        <div>
+                                            <div
+                                                *ngIf="username.invalid && username.dirty ||username.touched ||ref.submitted">
+                                                <p *ngIf="username.errors?.['required']" class="validation"> *Username
+                                                    is
+                                                    required</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <!-- Password -->
+                                <div class="col-md-6 mb-4">
+                                    <div>
+                                        <label class="form-label" for="password">Password</label>
+                                        <input type="password" id="password" class="form-control"
+                                            formControlName="password" />
+                                        <div>
+                                            <div
+                                                *ngIf="password.invalid && password.dirty ||password.touched ||ref.submitted">
+                                                <p *ngIf="password.errors?.['required']" class="validation"> *Password
+                                                    is
+                                                    required</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <!--Email -->
+                                <div class="col-md-6 mb-4 pb-2">
+                                    <div>
+                                        <label class="form-label" for="email">Email</label>
+                                        <input type="email" id="email" class="form-control " formControlName="email" />
+                                        <div>
+                                            <div *ngIf="email.invalid && email.dirty ||email.touched ||ref.submitted">
+                                                <p *ngIf="email.errors?.['required']" class="validation"> *Email is
+                                                    required</p>
+                                                <p *ngIf="email.errors?.['pattern']" class="validation"> *kindly check
+                                                    email pattern(abc@gmail.com)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Phone Number -->
+                                <div class="col-md-6 mb-4 pb-2">
+                                    <div>
+                                        <label class="form-label" for="phoneno">Contact Number</label>
+                                        <input type="tel" id="phoneno" class="form-control "
+                                            formControlName="phoneno" />
+                                        <div>
+                                            <div
+                                                *ngIf="phoneno.invalid && phoneno.dirty ||phoneno.touched ||ref.submitted">
+                                                <p *ngIf="phoneno.errors?.['required']" class="validation"> *PhoneNumber
+                                                    is
+                                                    required</p>
+                                                <p *ngIf="phoneno.errors?.['pattern']" class="validation"> *10 digits
+                                                    required</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <!-- city -->
+                                <div class="col-12">
+                                    <div>
+                                        <label class="form-label" for="city">City</label>
+                                        <input type="text" id="city" class="form-control " formControlName="city" />
+                                        <div>
+                                            <div *ngIf="city.invalid && city.dirty ||city.touched ||ref.submitted">
+                                                <p *ngIf="city.errors?.['required']" class="validation"> *City is
+                                                    required</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- submit-->
+                            <div class="mt-4 pt-2 d-flex justify-content-center gap-3">
+                                <button type="submit" class="btn btn-primary w-25">Submit</button>
+                            </div>
+                        </form>
+                        <!-- logo -->
+                        <div class="d-flex justify-content-around pt-3">
+                            <span> <img src="../../assets/twitter-svgrepo-com.svg" alt="google" class="logo"></span>
+                            <span> <img src="../../assets/google-svgrepo-com.svg" alt="google" class="logo"></span>
+                            <span> <img src="../../assets/linkedin-svgrepo-com.svg" alt="google" class="logo"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<ng-template #template>
+    <div class="modal-body">
+        <div class="px-5 py-2">
+            <img src="../../assets/success-tick-dribbble.gif" alt="gif" class="w-75 d-block mx-auto">
+            <h4 class="mt-2 text-center">Congratulations !</h4>
+            <h5 class="text-center mt-2 text-muted">Your account has been created successfully</h5>
+        </div>
+        <button type="button" class="btn btn-success d-block mx-auto" (click)="confirm()">Done</button>
+    </div>
+</ng-template>

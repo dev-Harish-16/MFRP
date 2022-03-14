@@ -1,0 +1,127 @@
+<main>
+    <!-- live Date and Time -->
+    <div class="d-sm-flex flex-column  align-items-end">
+        <ul class="list-unstyled p-3 mt-2 bg-white mx-5 mx-sm-5 border border-warning Time text-center">
+            <li class="fs-6 fw-bold text-decoration-none"><i class="far fa-calendar-alt text-success"></i> : {{date |
+                date:'mediumDate':'IST'}}</li>
+            <li class="fs-6 fw-bold text-decoration-none"><i class="fas fa-clock text-success"></i> : {{Time |
+                date:'mediumTime':'IST'}}</li>
+        </ul>
+    </div>
+
+    <!-- Welcome card -->
+    <section class="container py-3 px-5">
+        <div class="card p-5 mx-auto card_border border-0 shadow-lg bg-light " style="max-width:1024px;"
+            data-aos="fade-up" data-aos-delay="600">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <!-- <img src="../../assets/undraw_medicine_b-1-ol.svg" class="img-fluid d-none d-sm-block" alt="doctor"> -->
+                    <img src="../../assets/doc.png" alt="doctor-dashboard"
+                        class="img-fluid  d-none d-sm-block mx-auto w-75">
+                </div>
+                <div class="col-md-8 d-flex justify-content-center align-items-center">
+                    <div class="card-body text-center fw-bold ">
+                        <h1 class="card-title fst-italic">Hello, <span class="h1 text-warning">Dr.{{doctorInfo.username
+                                | titlecase}}</span> </h1>
+                        <h6 class="text-muted">Have a nice day at work</h6>
+
+                        <!-- offcanvas-button -->
+                        <a class="btn float-sm-end mt-5 offcanvas_btn" data-bs-toggle="offcanvas"
+                            href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                            View Profile
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--Offcanvas for doctor profile  -->
+    <section>
+        <div class="pt-3">
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
+                aria-labelledby="offcanvasExampleLabel" style="background-color:#141b56;">
+                <button type="button" class="btn-close text-reset bg-light d-block ms-auto me-2 mt-2"
+                    data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                <div class="offcanvas-header d-flex flex-column">
+                    <img src="{{doctorInfo.imgUrl}}" alt="doctor_profile" class="shadow-lg"
+                        style="width:200px; height:190px; border-radius: 60px;">
+                    <h3 class="text-white pt-3">Dr.{{doctorInfo.name | titlecase}}</h3>
+                </div>
+                <div class="offcanvas-body ">
+                    <div class=" d-flex justify-content-center align-items-center gap-3">
+                        <ul class="list-unstyled ">
+                            <li class="text-decoration-none text-white">Specialization</li>
+                            <li class="text-decoration-none text-white">Experience</li>
+                            <li class="text-decoration-none text-white">City</li>
+                            <li class="text-decoration-none text-white">Contact No</li>
+                        </ul>
+                        <ul class="list-unstyled ">
+                            <li class="text-decoration-none text-white">: {{doctorInfo.specialization }}</li>
+                            <li class="text-decoration-none text-white">: {{doctorInfo.experience }} Years </li>
+                            <li class="text-decoration-none text-white">: {{doctorInfo.city }} </li>
+                            <li class="text-decoration-none text-white">: {{doctorInfo.phoneno }}</li>
+                        </ul>
+                    </div>
+
+                    <div class="px-5">
+                        <div class="text-center pt-2 bg-light rounded-3">
+                            <p class="fw-bold fs-6 mb-0">Wallet <i class="fa-solid fa-wallet fa-shake text-success ps-2"
+                                    style="--fa-animation-duration: 2s"></i> </p>
+                            <p class="text-success fs-5 fw-bold ">&#8377; {{doctorInfo.wallet}}</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- View Patients details -->
+    <section class="pb-5">
+        <div class="container pb-3">
+            <h1 class="pb-3 text-center fw-bold" style="color:#141b56">Appointment Details</h1>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3  row-cols-lg-4  g-2">
+                <div class="col" *ngFor="let data of doctorInfo.appointmentDetails ">
+                    <div class="card border-0 shadow-lg Patients_card">
+                        <div class="card-body">
+                            <div class="row g-0">
+                                <div class="col fw-bold  pb-0 " style="color: #141b56;">
+                                    <p class="text-decoration-none ">Patient Name</p>
+                                </div>
+                                <div class="col  pb-0">
+                                    <p class="text-decoration-none "> : {{data.username | titlecase}}</p>
+                                </div>
+                            </div>
+                            <div class="row g-0" >
+                                <div class="col fw-bold  pb-0" style="color: #141b56;">
+                                    <p class="text-decoration-none ">Age </p>
+                                </div>
+                                <div class="col  pb-0">
+                                    <p class="text-decoration-none "> : {{data.age}}</p>
+                                </div>
+                            </div>
+                            <div class="row g-0">
+                                <div class="col fw-bold  pb-0" style="color: #141b56;">
+                                    <p class="text-decoration-none ">Date</p>
+                                </div>
+                                <div class="col  pb-0">
+                                    <p class="text-decoration-none "> : {{data.date}}</p>
+                                </div>
+                            </div>
+                            <div class="row g-0">
+                                <div class="col fw-bold  pb-0" style="color: #141b56;">
+
+                                    <p class="text-decoration-none ">Time</p>
+                                </div>
+                                <div class="col  pb-0">
+                                    <p class="text-decoration-none "> : {{data.timmings}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

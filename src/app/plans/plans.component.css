@@ -1,0 +1,10 @@
+.card,.payment_card{
+  border: 3px solid #141b56;
+  border-radius:20px;
+}
+.card-header{
+  background-color: #28328c;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  color: #f0f0f5;
+}

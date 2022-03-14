@@ -1,0 +1,145 @@
+main{
+  background-color: #eef3fb;
+}
+.Welcome_card {
+  max-width: 1024px;
+  max-height: 300px;
+  border-radius: 20px;
+}
+
+.Appointment_btn,
+.modal-btn {
+  background-color: #ffc107;
+  color: #141B56;
+}
+
+.goToAppointmentPage_btn,.Search_btn {
+  background-color: #141B56;
+  color: white;
+}
+
+.goToAppointmentPage_btn:hover,.Search_btn:hover {
+  box-shadow: 0px 0px 10px 2px #141B56;
+}
+
+.Appointment_btn:hover,
+.modal-btn:hover {
+  background-color: white;
+  color: #ffc107;
+  box-shadow: 0px 0px 10px 2px  #ffc107;
+}
+
+.doctorname {
+  color: #141B56;
+  font-weight: bold;
+}
+
+.details {
+  font-weight: lighter;
+}
+
+.modal-body {
+  font-size: medium;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.modal-header {
+  background-color: #141B56;
+  color: white;
+}
+
+
+.modal {
+  backdrop-filter: blur(15px);
+  border-radius: 10px;
+}
+
+
+select:hover {
+ 
+  box-shadow: 0px 0px 10px 2px #141B56;
+  /* hover on select */
+}
+
+.names {
+  color: #141B56;
+  font-weight: bold;
+  font-family: 'Open Sans', sans-serif;
+}
+
+select {
+  font-family: 'Open Sans', sans-serif;
+  border: 1px solid #141B56;
+  color: black;
+  font-weight: bold;
+}
+
+.heading {
+  color: #141B56;
+  font-family: 'Open Sans', sans-serif;
+  letter-spacing: 2px;
+  word-spacing: 5px;
+}
+
+.headings {
+  font-weight: bold;
+  color: #ffc107;
+
+}
+
+.headings:hover {
+  color: #141B56;
+  
+}
+
+.largescreencard {
+  background-color: #141B56;
+}
+
+.card {
+  border-radius: 6px;
+}
+
+.col {
+  border-radius: 6px;
+}
+
+.card:hover {
+
+  box-shadow: 0px 0px 20px 2px #999999;
+}
+
+.doctor_card {
+  max-width: 900px;
+  border-radius: 20px;
+}
+
+.doctor_img {
+  border-radius: 15px;
+}
+
+input {
+  font-family: 'Open Sans', sans-serif;
+  color: black;
+  border: 1px solid #141B56;
+  font-weight: bold;
+
+}
+
+input:hover {
+ 
+  box-shadow: 0px 0px 10px 2px #141B56;
+  /* hover on select */
+}
+
+.form_input_radius {
+  border-radius: 5px;
+}
+
+.modaltext {
+  color: #141B56;
+  font-family: 'Open Sans', sans-serif;
+}
+.plans{
+  color: #141B56;
+}

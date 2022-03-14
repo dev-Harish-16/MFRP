@@ -1,0 +1,149 @@
+<section>
+    <div class="pt-3 pb-5">
+        <div class="container px-3">
+
+            <div class="card shadow-lg card_border ms-auto my-2 " data-aos="fade-right" data-aos-delay="600">
+                <div class="row g-0">
+                    <div class="col-md-7">
+                        <img src="../../../assets/payment-2.gif" alt="pic"
+                            class="img-fluid mx-auto d-none d-sm-block h-100" style="border-radius:20px">
+                    </div>
+
+                    <div class="col-md-5 d-flex justify-content-center align-items-center shadow-lg">
+                        <div class="card border-0 card_border mx-auto  p-3">
+                            <div class="card-body ">
+                                <h3 class="text-center fw-bold" style="color:#141B56;">Appointment Details</h3>
+                                <div class=" d-flex justify-content-center p-4 gap-2">
+                                    <ul class="list-unstyled fw-bold ">
+                                        <li class="text-decoration-none fs-5 ">Doctor</li>
+                                        <li class="text-decoration-none fs-5">Slot Time</li>
+                                        <li class="text-decoration-none fs-5">Date</li>
+                                        <li class="text-decoration-none fs-5">Fees</li>
+                                    </ul>
+                                    <ul class="list-unstyled">
+                                        <li class="text-decoration-none fs-5 text-muted fw-bold">:
+                                            {{accountDetails.doctorname}}</li>
+                                        <li class="text-decoration-none fs-5 text-muted fw-bold">:
+                                            {{accountDetails.timmings}} </li>
+                                        <li class="text-decoration-none fs-5 text-muted fw-bold">:
+                                            {{accountDetails.date}} </li>
+                                        <li class="text-decoration-none fs-5 text-muted fw-bold">: &#8377;
+                                            {{accountDetails.consultationFee}}</li>
+                                    </ul>
+                                </div>
+                                <button class="btn btn-warning w-25 float-end pay_btn"
+                                    (click)="successfulPayment(template)">PAY</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 g-3 py-3">
+                <div class="col py-3">
+                    <div class="card border-0 card_border mx-auto shadow-lg p-3 w-75">
+                        <div class=" card-body text-center">
+                            <h3 class="fw-bold">Wallet Ballance <i class="fa-solid fa-shake fa-wallet ps-2"
+                                    style="--fa-animation-duration: 2s;color: green;"></i></h3>
+                            <p><span class=" mb-0 px-5 py-1 border-2 border-dark rounded-pill fw-bold"
+                                    style="background-color: #BACDF9;">
+                                    <span class="text-dark">&#8377; </span>{{accountDetails.wallet}}</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col py-3">
+                    <div class="card border-0 card_border mx-auto shadow-lg h-100 p-3 w-75">
+                        <div class="card-body">
+                            <h3 class="text-center fw-bold" style="color:#141B56;">Add Money to Balance</h3>
+
+                            <!-- input-field for add money -->
+                            <form [formGroup]="AddMOney">
+                                <div class="input-group pt-4">
+                                    <span class="input-group-text fw-bold">&#8377;</span>
+                                    <input type="number" class="form-control w-75 d-block mx-auto"
+                                        formControlName="addMoney" [(ngModel)]="value">
+                                </div>
+                            </form>
+
+                            <!-- add money -->
+                            <div class="py-5 d-flex flex-column flex-sm-row gap-2 justify-content-around text-muted">
+                                <div class="btn border-2 topup_btn" (click)="addToInput(500)"><span
+                                        class="text-dark fw-bold">&#8377;</span> 500</div>
+                                <div class="btn  border-2 topup_btn" (click)="addToInput(1000)"><span
+                                        class="text-dark fw-bold ">&#8377;</span>1000</div>
+                                <div class="btn border-2 topup_btn" (click)="addToInput(2000)"><span
+                                        class="text-dark fw-bold">&#8377;</span>2000</div>
+                            </div>
+
+                            <!--Button for open modal -->
+                            <button class="btn btn-warning d-block mx-auto ProceedToAdd_btn" data-bs-target="#modal2"
+                                data-bs-toggle="modal">Proceed To Add
+                                <i class="fa-solid fa-angles-right fa-beat-fade fa-lg"
+                                    style=" --fa-bounce-start-scale-x:1.3"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="py-2">
+                <img src="../../../assets/payment-1.gif" alt="gif" class="w-50 d-block mx-auto "
+                    style="border-radius: 20px;">
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Payment Modal -->
+<div class="modal fade mx-auto my-auto" tabindex="-1" id="modal2">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header  text-center">
+                <h5 class="modal-title">Add Money</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="https://www.financialexpress.com/wp-content/uploads/2017/02/dfeas.png" alt="">
+                <div class="row">
+                    <div class="col">
+                        <p>733753697@hdfcbank</p>
+                    </div>
+                    <div class="col">{{value}}</div>
+                </div>
+                <button class="btn btn-success mx-auto d-block " data-bs-dismiss="modal" (click)="addToWallet()">Add
+                    Money</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- alert modal -->
+<ng-template #template>
+    <!-- insufficient balance -->
+    <div *ngIf="message=='Insufficient Balance!'">
+        <div class="modal-header py-4">
+            <button type="button" class="btn-close" aria-label="Close" (click)="modalRef?.hide()">
+                <span aria-hidden="true" class="visually-hidden">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body" >
+            <div>
+                <img src="../../../assets/insufficentgif.gif" alt="gif" class="d-block mx-auto w-75">
+                <h5 class="text-center py-3">Insufficient Balance!</h5>
+            </div>
+        </div>
+    </div>
+   
+    <!-- if payement successfull this will load -->
+    <div  *ngIf="message=='payment successfull'">
+        <div class="modal-body">
+            <div>
+                <img src="../../../assets/success_gif3.gif" alt="gif" class="d-block mx-auto">
+                <h4 class="mt-2 text-center">Congratulations !</h4>
+                <h5 class="text-center text-muted">your payment was successfull</h5>
+                <button type="button" class="btn btn-success d-block mx-auto" (click)="confirm()">Done</button>
+            </div>
+        </div>
+    </div>
+    
+</ng-template>

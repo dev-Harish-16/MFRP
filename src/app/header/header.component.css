@@ -1,0 +1,54 @@
+nav {
+  background-color: #141b56;
+  padding: 15px 0px;
+}
+
+#logo {
+  font-size: 1.5rem;
+  color: #BACDF9;
+}
+
+ul>li>a {
+  color: #EDF2FB;
+  font-weight: 550;
+}
+
+ul>li>a:focus {
+  border-bottom: 2px solid #ffc107;
+}
+
+/*Hover underline effect */
+.hover-underline-animation {
+  display: inline-block;
+  position: relative;
+  color: white;
+}
+
+.hover-underline-animation:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  border-bottom: 2px solid #ffc107;
+  transform-origin: center;
+  transition: 0.25s ease-in-out;
+}
+
+.hover-underline-animation:hover:after {
+  transform: scaleX(1);
+  transform-origin: center;
+}
+
+.modal-dialog,
+.modal-content {
+  border-radius: 20px;
+}
+
+.validation{
+  color:red;
+  font-weight: bold;
+}

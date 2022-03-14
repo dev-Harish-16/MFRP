@@ -1,0 +1,34 @@
+section {
+  background-color: #EDF2FB;
+  
+}
+
+.Details>li,
+.header_text {
+  color: #141b56;
+}
+
+.appointment_card,
+.appointment_card2 {
+  border-radius: 20px;
+}
+
+.appointment_card2 {
+  max-width: 500px;
+}
+
+@media only screen and (max-width:400px) {
+
+  .Details>li {
+    font-size: small;
+  }
+
+}
+
+@media only screen and (min-width:400px) {
+
+  .Details>li {
+    font-size: large;
+  }
+
+}

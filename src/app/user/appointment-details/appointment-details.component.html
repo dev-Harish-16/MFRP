@@ -1,0 +1,58 @@
+<section>
+    <!-- gotToUserDashboard -->
+    <div class="px-5 pt-3">
+        <button class="btn btn-warning d-block mx-auto fw-bold float-sm-end  "
+        (click)="gotToUserDashboard()">Go to UserDashboard <i class="fas fa-angle-double-right fa-lg"></i></button>
+    </div>
+  
+    <!--Appointment Details card  -->
+    <div class="container p-5 mt-3">
+        <div class="card p-5 mx-auto card_border border-0 shadow-lg  appointment_card " style="max-width:1024px;"
+            data-aos="fade-up" data-aos-delay="600">
+            <div class="row g-0">
+                <div class="col-md-8 d-flex justify-content-center align-items-center">
+                    <div class="card-body text-center fw-bold ">
+                        <p class="display-5 text-center header_text">Appointment Details</p>
+                    </div>
+                </div>
+                <div class="col-md-4 ">
+                    <img src="../../../assets/appointment_1.svg" class="img-fluid d-none d-sm-block" alt="doctor">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- view appointments -->
+    <div class="container">
+        <div class="pb-5 px-3">
+            <button class="btn btn-warning d-block mx-auto fw-bold mb-4 " (click)="getDetails()">View
+                Appointment</button>
+            <div class="row row-cols-1 row-cols-sm-1 row-cols-lg-2 g-3">
+                <div class="col" *ngFor="let v of appointmentDetails">
+                    <div class="card appointment_card2 shadow-lg mx-auto ">
+                        <div class="card-body">
+                            <div class=" d-flex justify-content-center  gap-2 ">
+                                <ul class="list-unstyled fw-bold Details">
+                                    <li class="text-decoration-none ">Patient Name</li>
+                                    <li class="text-decoration-none ">Doctor Name</li>
+                                    <li class="text-decoration-none ">ConsultationFee</li>
+                                    <li class="text-decoration-none ">Date</li>
+                                    <li class="text-decoration-none ">Time</li>
+                                </ul>
+                                <ul class="list-unstyled Details">
+                                    <li class="text-decoration-none  text-dark fw-bold">:{{v.username | titlecase}}</li>
+                                    <li class="text-decoration-none  text-dark fw-bold">:{{v.doctorname | titlecase}}
+                                    </li>
+                                    <li class="text-decoration-none  text-dark fw-bold">: {{v.consultationFee}}</li>
+                                    <li class="text-decoration-none  text-dark fw-bold">: {{v.date}}</li>
+                                    <li class="text-decoration-none  text-dark fw-bold">: {{v.timmings}} </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
